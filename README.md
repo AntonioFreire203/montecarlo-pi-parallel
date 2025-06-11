@@ -1,56 +1,48 @@
-# Monte Carlo π – Paralelização em Java
+# Projeto: Cálculo de Pi com Método de Monte Carlo (Versão Paralela)
 
-Um projeto em Java que estima o valor de π pelo Método de Monte Carlo, aproveitando paralelismo via `Threads`. O objetivo é comparar tempos de execução serial vs. paralelo, analisar escalabilidade e eficiência, e identificar possíveis gargalos numa arquitetura de múltiplas threads.
+Este projeto implementa o cálculo do valor de π utilizando o **método de Monte Carlo** com **paralelismo em Java**, por meio do uso de múltiplas threads.
 
----
+## 🎯 Objetivo
 
-## Sumário
+Analisar o desempenho da execução paralela de um algoritmo computacionalmente intensivo, comparando diferentes números de threads e avaliando **tempo de execução**, **eficiência** e **escalabilidade**.
 
-- [Visão Geral](#visão-geral)
-- [Características](#características)
-- [Pré-requisitos](#pré-requisitos)
-- [Como Compilar e Executar](#como-compilar-e-executar)
-- [Medição de Tempo e Benchmark](#medição-de-tempo-e-benchmark)
-- [Configuração da Máquina](#configuração-da-máquina)
-- [Análise de Escalabilidade](#análise-de-escalabilidade)
-- [Possíveis Melhorias](#possíveis-melhorias)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
+## 🧠 Método de Monte Carlo
 
----
+Gera pontos aleatórios dentro de um quadrado de lado 1. Calcula π com base na proporção de pontos que caem dentro do círculo inscrito.
 
-## Visão Geral
+## 🛠️ Tecnologias
 
-O Método de Monte Carlo estima π gerando pontos aleatórios dentro de um quadrado de lado 2 e verificando quantos caem dentro do círculo inscrito (raio 1). A razão entre pontos dentro do círculo e total de pontos, multiplicada por 4, aproxima π.
+- Java
+- Threads
+- Medição: `System.nanoTime()`
 
-Esta implementação:
+## 📁 Estrutura do Projeto
+```
+MonteCarloPiParallel/
+├── src/
+│   ├── Main.java
+│   ├── MonteCarloPiParallel.java
+│   └── PiCalculatorThread.java
+├── results/
+│   └── results.csv          <- Resultados dos testes de desempenho
+├── relatorio.md             <- Análise técnica e observações
+├── README.md
+└── .gitignore
+```
+**Testes**
 
-1. Permite execução **serial** (1 thread) e **paralela** (N threads).
-2. Recebe parâmetros de número total de amostras e número de threads.
-3. Coleta tempos de início/fim para cada configuração.
+1.Testes realizados com diferentes números de threads (1, 2, 4, 8).
 
----
+2.Resultados registrados em results/results.csv.
 
-## Características
+**Máquina de Testes**
 
-- Estimativa de π por Monte Carlo
-- Paralelização manual com `Thread` e `Runnable`
-- Comparação de tempos de execução para diferentes valores de `numThreads`
-- Relatórios simples de velocidade, eficiência e escalabilidade
+1.Descreva aqui: modelo do processador, número de núcleos, RAM, sistema operacional.
 
----
+Observações
 
-## Pré-requisitos
+    1.O método utilizado baseia-se na geração de pontos aleatórios em um quadrado.
 
-- Java 
-- Maven ou Gradle (opcional, se preferir gerenciar dependências)
-- Git
+    2.O tempo de execução é medido usando System.nanoTime().
 
----
-
-## Como Compilar e Executar
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/SEU_USUARIO/montecarlo-pi-parallel-java.git
-   cd montecarlo-pi-parallel-java
+    3.Resultados e análises adicionais estão em relatorio.md.
