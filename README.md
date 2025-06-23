@@ -14,7 +14,6 @@ Gera pontos aleatórios dentro de um quadrado de lado 1. Calcula π com base na 
 
 - Java
 - Threads
-- Medição: `System.nanoTime()`
 
 ## 📁 Estrutura do Projeto
 ```
@@ -23,26 +22,53 @@ MonteCarloPiParallel/
 │   ├── Main.java
 │   ├── MonteCarloPiParallel.java
 │   └── PiCalculatorThread.java
-├── results/
-│   └── results.csv          <- Resultados dos testes de desempenho
+├── dados/
+│   └── dados.csv          <- Resultados dos testes de desempenho
 ├── relatorio.md             <- Análise técnica e observações
 ├── README.md
 └── .gitignore
 ```
 **Testes**
+Dados Coletados:
 
-1.Testes realizados com diferentes números de threads (1, 2, 4, 8).
+    Valor estimado de Pi
 
-2.Resultados registrados em results/results.csv.
+    Tempo de execução (segundos)
+
+    Consumo de memória (MB)
+
+    Uso de CPU (%)
+
+1.Testes realizados com diferentes números de threads (1, 2, 4, 8,16).
+
+2.Resultados registrados em dados/dados.csv.
 
 **Máquina de Testes**
 
 1.Descreva aqui: modelo do processador, número de núcleos, RAM, sistema operacional.
 
-Observações
+- **Processador:** 11th Gen Intel® Core™ i7-1165G7 @ 2.80GHz (4 núcleos, 8 threads)
+- **Memória RAM:** 8,00 GB (utilizável: 5,49 GB)
+- **Sistema operacional:** Windows 10 64 bits (processador x64)
 
-    1.O método utilizado baseia-se na geração de pontos aleatórios em um quadrado.
 
-    2.O tempo de execução é medido usando System.nanoTime().
 
-    3.Resultados e análises adicionais estão em relatorio.md.
+
+📝 Observações Técnicas
+
+    O método utilizado baseia-se na geração de pontos aleatórios dentro de um quadrado de área conhecida.
+
+    O tempo de execução foi medido usando System.nanoTime().
+
+    O consumo de memória foi monitorado usando Runtime.getRuntime().
+
+    O uso de CPU foi estimado via OperatingSystemMXBean.
+
+### Resultados 
+    **Eficiência**
+    A eficiência da solução foi alta até 8 threads, apresentando redução de tempo de execução quase linear. 
+    No entanto, ao utilizar 16 threads, a eficiência caiu devido ao overhead de gerenciamento e à limitação física da máquina (8 threads lógicas).
+
+    **Escalabilidade**
+    O algoritmo apresentou boa escalabilidade para um número de threads igual ou inferior ao número de threads lógicas do processador. 
+    A partir deste ponto, a escalabilidade foi limitada, com ganhos marginais. Esse comportamento é esperado em arquiteturas com número limitado de núcleos.
