@@ -1,20 +1,23 @@
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PiCalculatorThread extends Thread {
     private final int pointsToGenerate;
-    private int insideCircle = 0;
+    private long insideCircle = 0;
 
     public PiCalculatorThread(int pointsToGenerate) {
         this.pointsToGenerate = pointsToGenerate;
     }
 
-    public int getInsideCircle() {
+    public long getInsideCircle() {
         return insideCircle;
     }
 
     @Override
     public void run() {
-        Random random = new Random();
+        // Usa ThreadLocalRandom para melhor performance em ambiente multi-thread
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+
         for (int i = 0; i < pointsToGenerate; i++) {
             double x = random.nextDouble();
             double y = random.nextDouble();

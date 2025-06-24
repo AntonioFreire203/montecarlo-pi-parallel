@@ -9,14 +9,17 @@ public class MonteCarloPiParallel {
 
     public double calculatePi() throws InterruptedException {
         PiCalculatorThread[] threads = new PiCalculatorThread[threadCount];
-        int pointsPerThread = totalPoints / threadCount;
+        int basePointsPerThread = totalPoints / threadCount;
+        int remainder = totalPoints % threadCount;
 
+        // Distribui pontos restantes para as primeiras threads
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new PiCalculatorThread(pointsPerThread);
+            int pointsForThisThread = basePointsPerThread + (i < remainder ? 1 : 0);
+            threads[i] = new PiCalculatorThread(pointsForThisThread);
             threads[i].start();
         }
 
-        int totalInsideCircle = 0;
+        long totalInsideCircle = 0;
         for (PiCalculatorThread thread : threads) {
             thread.join();
             totalInsideCircle += thread.getInsideCircle();
