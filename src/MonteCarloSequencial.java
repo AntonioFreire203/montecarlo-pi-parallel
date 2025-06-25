@@ -1,4 +1,3 @@
-package com.uni.montecarlo;
 public class MonteCarloSequencial {
 
     public static void main(String args[]) {
